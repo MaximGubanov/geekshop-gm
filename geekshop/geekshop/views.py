@@ -1,7 +1,19 @@
 from django.shortcuts import render
 
 def index(request):
-    return render(request, 'geekshop/index.html')
+    title = 'Магазин'
+
+    context = {
+        'title': title,
+    }
+
+    return render(request, 'geekshop/index.html', context=context)
 
 def contacts(request):
-    return render(request, 'geekshop/contact.html')
+    title = 'Контакты'
+
+    context = {
+        'title': title,
+    }
+
+    return render(request, 'geekshop/contact.html', context=context)
