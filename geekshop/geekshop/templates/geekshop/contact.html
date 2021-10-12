@@ -12,54 +12,56 @@
 		</div>
 
 		<div class="location">
+			{% for item in contacts %}
 			<div class="location-1">
 				<i class="fa fa-map-marker fa-5x"></i>
-				<h4>Москва</h4>
+				<h4>{{ item.city }}</h4>
 				<div class="contacts">
 					<h5>Телефон</h5>
-					<p>+7-888-888-8888</p>
+					<p>{{ item.phone }}</p>
 				</div>
 				<div class="contacts">
 					<h5>Email</h5>
-					<p>info@geekshop.ru</p>
+					<p>{{ item.email }}</p>
 				</div>
 				<div class="contacts">
 					<h5>Адрес</h5>
-					<p>В пределах МКАД</p>
+					<p>{{ item.adress }}</p>
 				</div>
 			</div>
-			<div class="location-1">
-				<i class="fa fa-map-marker fa-5x"></i>
-				<h4>Москва</h4>
-				<div class="contacts">
-					<h5>Телефон</h5>
-					<p>+7-888-888-8888</p>
-				</div>
-				<div class="contacts">
-					<h5>Email</h5>
-					<p>info@geekshop.ru</p>
-				</div>
-				<div class="contacts">
-					<h5>Адрес</h5>
-					<p>В пределах МКАД</p>
-				</div>
-			</div>
-			<div class="location-1">
-				<i class="fa fa-map-marker fa-5x"></i>
-				<h4>Москва</h4>
-				<div class="contacts">
-					<h5>Телефон</h5>
-					<p>+7-888-888-8888</p>
-				</div>
-				<div class="contacts">
-					<h5>Email</h5>
-					<p>info@geekshop.ru</p>
-				</div>
-				<div class="contacts">
-					<h5>Адрес</h5>
-					<p>В пределах МКАД</p>
-				</div>
-			</div>
+			{% endfor %}
+<!--			<div class="location-1">-->
+<!--				<i class="fa fa-map-marker fa-5x"></i>-->
+<!--				<h4>Москва</h4>-->
+<!--				<div class="contacts">-->
+<!--					<h5>Телефон</h5>-->
+<!--					<p>+7-888-888-8888</p>-->
+<!--				</div>-->
+<!--				<div class="contacts">-->
+<!--					<h5>Email</h5>-->
+<!--					<p>info@geekshop.ru</p>-->
+<!--				</div>-->
+<!--				<div class="contacts">-->
+<!--					<h5>Адрес</h5>-->
+<!--					<p>В пределах МКАД</p>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			<div class="location-1">-->
+<!--				<i class="fa fa-map-marker fa-5x"></i>-->
+<!--				<h4>Москва</h4>-->
+<!--				<div class="contacts">-->
+<!--					<h5>Телефон</h5>-->
+<!--					<p>+7-888-888-8888</p>-->
+<!--				</div>-->
+<!--				<div class="contacts">-->
+<!--					<h5>Email</h5>-->
+<!--					<p>info@geekshop.ru</p>-->
+<!--				</div>-->
+<!--				<div class="contacts">-->
+<!--					<h5>Адрес</h5>-->
+<!--					<p>В пределах МКАД</p>-->
+<!--				</div>-->
+<!--			</div>-->
 		</div>
 
 		<div class="clr"></div>
