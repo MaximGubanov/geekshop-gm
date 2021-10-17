@@ -1,0 +1,20 @@
+[
+  {
+      "city": "Москва",
+      "phone": 79998881245,
+      "email": "info@geekshop.ru",
+      "adress": "МКАД"
+  },
+  {
+      "adress": "проспект Героев",
+      "city": "Нижний Новгород",
+      "email": "info@geekshop.ru",
+      "phone": 79876543333
+  },
+  {
+      "city": "Арзамас",
+      "phone": 79631245,
+      "email": "m_gubanov@bk.ru",
+      "adress": "ул. Ленина"
+  }
+]
