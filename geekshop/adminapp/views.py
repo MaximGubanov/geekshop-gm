@@ -8,6 +8,8 @@ from adminapp.forms import ShopUserAdminEditForm
 from adminapp.forms import ProductCategoryEditForm
 
 
+
+
 @user_passes_test(lambda u: u.is_superuser)
 def users(request):
     title = 'админка/пользователи'
