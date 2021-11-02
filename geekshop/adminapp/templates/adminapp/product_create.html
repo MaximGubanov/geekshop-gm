@@ -7,8 +7,8 @@
 {% block content %}
     <form class="form-horizontal" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ category_form }}
-      <button type="submit" class="btn btn-primary">Сохранить</button>
+        {{ product_form }}
+      <button type="submit" class="btn btn-primary">Создать товар</button>
     </form>
 {% endblock %}
 

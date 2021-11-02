@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
 from .models import ProductCategory, Product
 from basketapp.models import Basket
@@ -27,25 +28,38 @@ def get_same_products(hot_product):
 
 
 
-def products(request, pk=None):
+def products(request, pk=None, page=1):
     title = 'Каталог'
-    products = Product.objects.all().order_by('price')
+    # products = Product.objects.all().order_by('price')
     links = ProductCategory.objects.all()
     basket = get_basket(request.user)
 
     if pk is not None:
         if pk == 0:
-            products = Product.objects.all().order_by('price')
-            category = {'name': 'все'}
+            # products = Product.objects.all().order_by('price')
+            category = {'pk': 0, 'name': 'все'}
+            products = Product.objects.filter(is_active=True, category__is_active=True).order_by('price')
         else:
             category = get_object_or_404(ProductCategory, pk=pk)
-            products = Product.objects.filter(category__pk=pk).order_by('price')
+            products = Product.objects.filter(
+                category__pk=pk,
+                is_active=True,
+                category__is_active=True
+            ).order_by('price')
+
+        paginator = Paginator(products, 2)
+        try:
+            products_paginator = paginator.page(page)
+        except PageNotAnInteger:
+            products_paginator = paginator.page(1)
+        except EmptyPage:
+            products_paginator = paginator.page(paginator.num_pages)
 
         context = {
             'title': title,
             'links': links,
             'category': category,
-            'products': products,
+            'products': products_paginator,
             'basket': basket,
         }
 
@@ -53,6 +67,7 @@ def products(request, pk=None):
 
     hot_product = get_hot_product()
     same_products = get_same_products(hot_product)
+    products = Product.objects.filter(is_active=True, category__is_active=True).order_by('price')
 
     context = {
         'title': title,
@@ -79,4 +94,4 @@ def product(request, pk):
         'basket': get_basket(request.user),
     }
 
-    return render(request, 'mainapp/product.html', context=context)
+    return render(request, 'mainapp/products.html', context=context)

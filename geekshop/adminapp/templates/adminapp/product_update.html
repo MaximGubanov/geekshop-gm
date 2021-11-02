@@ -5,6 +5,7 @@
     <form class="form-horizontal" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ product_form }}
+        <input type="checkbox" name="is_active" class="" id="id_is_active" checked="">
       <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>
 {% endblock %}
