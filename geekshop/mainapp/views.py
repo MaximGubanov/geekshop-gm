@@ -1,16 +1,16 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
 from .models import ProductCategory, Product
-from basketapp.models import Basket
+# from basketapp.models import Basket
 import random
 
 
 
-def get_basket(user):
-    if user.is_authenticated:
-        return Basket.objects.filter(user=user)
-    else:
-        return []
+# def get_basket(user):
+#     if user.is_authenticated:
+#         return Basket.objects.filter(user=user)
+#     else:
+#         return []
 
 
 
@@ -32,7 +32,7 @@ def products(request, pk=None, page=1):
     title = 'Каталог'
     # products = Product.objects.all().order_by('price')
     links = ProductCategory.objects.all()
-    basket = get_basket(request.user)
+    # basket = get_basket(request.user)
 
     if pk is not None:
         if pk == 0:
@@ -60,7 +60,7 @@ def products(request, pk=None, page=1):
             'links': links,
             'category': category,
             'products': products_paginator,
-            'basket': basket,
+            # 'basket': basket,
         }
 
         return render(request, 'mainapp/products.html', context=context)
@@ -75,7 +75,7 @@ def products(request, pk=None, page=1):
         'hot_product': hot_product,
         'same_products': same_products,
         'products': products,
-        'basket': basket,
+        # 'basket': basket,
     }
 
     return render(request, 'mainapp/products.html', context=context)
@@ -91,7 +91,7 @@ def product(request, pk):
         'links': ProductCategory.objects.all(),
         'product': product,
         'same_products': get_same_products(product),
-        'basket': get_basket(request.user),
+        # 'basket': get_basket(request.user),
     }
 
     return render(request, 'mainapp/products.html', context=context)
