@@ -3,5 +3,5 @@ geekshop/geekshop/__pycache__/urls.cpython-38.pyc
 *.pyc
 /env/
 .idea/
-geekshop/.env
-geekshop/db.sqlite3
+
+/geekshop/geekshop/.env
