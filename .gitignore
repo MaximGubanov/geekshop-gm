@@ -4,4 +4,4 @@ geekshop/geekshop/__pycache__/urls.cpython-38.pyc
 /env/
 .idea/
 
-/geekshop/geekshop/.env
+geekshop/geekshop/.env
