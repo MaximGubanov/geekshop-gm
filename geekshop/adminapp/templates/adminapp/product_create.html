@@ -1,0 +1,17 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ product_form }}
+      <button type="submit" class="btn btn-primary">Создать товар</button>
+    </form>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'adminapp/js/resizeCheckbox.js' %}"></script>
+{% endblock %}
