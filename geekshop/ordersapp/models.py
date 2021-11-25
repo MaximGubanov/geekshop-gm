@@ -48,7 +48,7 @@ class Order(models.Model):
         verbose_name_plural = 'заказы'
 
     def __str__(self):
-        return f'Заказ {self.username} №{self.id} от {self.created}'
+        return f'Заказ {self.user.username} №{self.id} от {self.created}'
 
     def get_total_quantity(self):
         items = self.orderitems.select_related()
@@ -62,14 +62,6 @@ class Order(models.Model):
         items = self.orderitems.select_related()
         return sum(list(map(lambda x: x.quantity * x.product.price, items)))
 
-    def delete(self):
-        for item in self.orderitems.select_related():
-            item.product.quantity += item.quantity
-            item.product.save()
-
-        self.is_active = False
-        self.save()
-
 
 class OrderItemQuerySet(models.QuerySet):
     def delete(self, *args, **kwargs):
@@ -80,7 +72,7 @@ class OrderItemQuerySet(models.QuerySet):
 
 
 class OrderItem(models.Model):
-    object = OrderItemQuerySet.as_manager()
+    objects = OrderItemQuerySet.as_manager()
 
     order = models.ForeignKey(
         Order,
@@ -104,15 +96,3 @@ class OrderItem(models.Model):
     def get_product_cost(self):
         return self.product.price * self.quantity
 
-    def delete(self):
-        self.product.quantity += self.quantity
-        self.product.save()
-        super(OrderItem, self).delete()
-
-    # def save(self, *args, **kwargs):
-    #     if self.pk:
-    #         self.product.quantity -= self.quantity - self.__class__.get_item(self.pk).quantity
-    #     else:
-    #         self.product.quantity -= self.quantity
-    #     self.product.save()
-    #     super(self.__class__, self).save(*args, **kwargs)
